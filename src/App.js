@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './App.css';
 import InputForm from './components/InputForm';
 import DamageTable from './components/DamageTable';
@@ -19,19 +19,46 @@ function App() {
     weaponPower: 120,
     slayerPathNodes: 15,
     axeReforges: 5,
-    behemothLvl: 12,
-    totalSlayerPower:672.99,
-    totalBehemothPower: 325,
-    // powerDifference:100,
-    // powerMultiplier:1.994257143,
+    behemothLvl: 25.2,
     elementalMatchup: 'Advantage',
   });
+  
+  // Update non-crit damage values when the component mounts or when formData changes
+  useEffect(() => {
+  // Function to calculate non-crit damage based on the provided formula
+  const calculateNonCritDamage = (MV) => {
+    if (formData.powerMultiplier < 2) {
+      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier) * 0.971);
+    } else {
+      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
+    }
+  };
+  // Function to calculate total slayer power
+  const calculateTotalSlayerPower = () => {
+    let totalSlayerPower;
+    const baseDamage = 20 + (formData.weaponLevel * 20) + formData.weaponPower + formData.slayerPathNodes - 96;
+    const axeMultiplier = 1 + formData.axeReforges / 100;
 
-  // Function to handle form submission
-  // const handleSubmit = (e) => {
-  //   e.preventDefault(); // Prevent default form submission behavior
-  //   console.log(formData)
-  // };
+    if (formData.elementalMatchup === 'Advantage') {
+      totalSlayerPower = baseDamage * axeMultiplier + 96 * 1.99;
+    } else if (formData.elementalMatchup === 'Disadvantage') {
+      totalSlayerPower = baseDamage * axeMultiplier + 96 - (96 / 2);
+    } else {
+      totalSlayerPower = baseDamage * axeMultiplier + 96;
+    }
+
+    return totalSlayerPower.toFixed(2);
+  };
+  
+  // Calculate non-crit damage for Shots (L) and Shots (L) Empowered
+  const nonCritShotsL = calculateNonCritDamage(90);
+  const nonCritShotsLEmpowered = calculateNonCritDamage(150);
+  const totalSlayerPower = calculateTotalSlayerPower()
+  // Update formData with the calculated values
+  setFormData(prevFormData => ({...prevFormData,nonCritShotsL,nonCritShotsLEmpowered,totalSlayerPower}));
+  }, [formData]); // Trigger the effect whenever formData changes
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;

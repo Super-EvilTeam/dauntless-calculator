@@ -1,20 +1,7 @@
-import React from 'react';
+import React,{  } from 'react';
 import './DamageTable.css'; // Import CSS file for styling if needed
 
-const DamageTable = ({ formData,setFormData }) => {
-  // Function to calculate non-crit damage based on the provided formula
-  const calculateNonCritDamage = (MV,powerMultiplier) => {
-    if (powerMultiplier < 2) {
-      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * powerMultiplier) * 0.971);
-    } else {
-      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * powerMultiplier);
-    }
-  };
-
-  // Calculate non-crit damage for Shots (L) and Shots (L) Empowered
-  formData.nonCritShotsL = calculateNonCritDamage(90,formData.powerMultiplier);
-  formData.nonCritShotsLEmpowered = calculateNonCritDamage(150,formData.powerMultiplier);
- 
+const DamageTable = ({ formData }) => {
   return (
     <div className="damage-table-container">
       <h2>Damage Table</h2>
