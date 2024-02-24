@@ -9,8 +9,8 @@ const DamageTable = () => {
         <thead>
           <tr>
             <th></th>
-            <th colspan="2">Core Damage</th>
-            <th colspan="2">Part Damage</th>
+            <th colSpan="2">Core Damage</th>
+            <th colSpan="2">Part Damage</th>
           </tr>
           <tr>
             <th></th>

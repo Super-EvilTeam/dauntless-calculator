@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {  } from 'react';
 import './InputForm.css'; // Import CSS file
 
-const InputForm = ({ formData, handleInputChange }) => {
+const InputForm = ({ formData, handleSubmit,handleChange}) => {
   // Array of input field configurations
   const inputFields = [
     { name: 'mvFlat', label: 'MV Flat' },
@@ -17,25 +17,37 @@ const InputForm = ({ formData, handleInputChange }) => {
     { name: 'slayerPathNodes', label: 'Slayer Path Nodes' },
     { name: 'axeReforges', label: 'Axe Reforges' }
   ];
+
   
   return (
     <div className="input-form-container">
       <h2 className="input-form-heading">Inputs</h2>
-      <form className="input-form">
+      <form className="input-form" onSubmit={handleSubmit}>
         {inputFields.map(field => (
           <div key={field.name}>
             <label>{field.label}:</label>
-            <input name={field.name} value={formData[field.name]} onChange={handleInputChange} />
+            <input
+              type="number"
+              step="0.01"
+              name={field.name}
+              value={formData[field.name]}
+              onChange={(e) => handleChange(e)} // Call handleChange on change
+            />
           </div>
         ))}
         <div>
           <label>Elemental Matchup:</label>
-          <select name="elementalMatchup" value={formData.elementalMatchup} onChange={handleInputChange}>
+          <select
+            name="elementalMatchup"
+            value={formData.elementalMatchup}
+            onChange={(e) => handleChange(e)} // Call handleChange on change
+          >
             <option value="Advantage">Advantage</option>
             <option value="Disadvantage">Disadvantage</option>
             <option value="Neutral">Neutral</option>
           </select>
         </div>
+        <button type="submit">Calculate</button>
       </form>
     </div>
   );

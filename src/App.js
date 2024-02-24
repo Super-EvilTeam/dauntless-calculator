@@ -15,30 +15,66 @@ function App() {
     partDamageMultiplier: 1,
     partDamageFlat: 0,
     acidicPenalty: 1,
-    weaponLevel: 20,
+    weaponLevel:20,
     weaponPower: 120,
     slayerPathNodes: 15,
     axeReforges: 5,
+    totalSlayerPower: NaN,
     elementalMatchup: 'Advantage',
   });
 
-  // Function to handle changes in form fields
-  const handleInputChange = (e) => {
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    console.log(formData)
+    // Calculate total slayer power
+    const totalSlayerPower = calculateTotalSlayerPower(formData);
+    // Update the formData state with the calculated totalSlayerPower
+    setFormData({
+      ...formData,totalSlayerPower: totalSlayerPower,});
+  };
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    // Validate if the value is numeric
-    if (!isNaN(value) || name === 'elementalMatchup') {
-      console.log(value)
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
+  
+    // Determine the data type of the field
+    const fieldType = typeof formData[name];
+  
+    // Parse the input value based on the data type
+    let parsedValue;
+    if (fieldType === 'number') {
+      // For numeric fields, parse the value as a float
+      parsedValue = parseFloat(value);
+    } else {
+      // For other fields (e.g., strings), use the value as is
+      parsedValue = value;
     }
+  
+    // Update the form data state
+    setFormData(prevFormData => ({...prevFormData,[name]: parsedValue}));
+  };
+  
+  // Function to calculate total slayer power
+  const calculateTotalSlayerPower = (data) => {
+    let totalSlayerPower;
+    const baseDamage = 20 + (data.weaponLevel * 20) + data.weaponPower + data.slayerPathNodes - 96;
+    const axeMultiplier = 1 + data.axeReforges / 100;
+
+    if (data.elementalMatchup === 'Advantage') {
+      totalSlayerPower = baseDamage * axeMultiplier + 96 * 1.99;
+    } else if (data.elementalMatchup === 'Disadvantage') {
+      totalSlayerPower = baseDamage * axeMultiplier + 96 - (96 / 2);
+    } else {
+      totalSlayerPower = baseDamage * axeMultiplier + 96;
+    }
+
+    return totalSlayerPower.toFixed(2);
   };
 
   return (
     <div className="App">
       <div className="left-container">
-        <InputForm formData={formData} handleInputChange={handleInputChange} />
+        <InputForm formData={formData} handleSubmit={handleSubmit} handleChange={handleChange} />
       </div>
       <div className="right-container">
         <div className="right-top">
