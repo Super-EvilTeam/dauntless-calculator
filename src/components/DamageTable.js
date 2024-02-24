@@ -1,7 +1,50 @@
-import React,{  } from 'react';
+import React from 'react';
 import './DamageTable.css'; // Import CSS file for styling if needed
 
 const DamageTable = ({ formData }) => {
+  // Define an array of damage types with their corresponding MV values
+  const damageTypes = [
+    { name: 'Shots (L)', MV: 90 },
+    { name: 'Shots (L) Empowered', MV: 150 },
+    // Add more damage types as needed
+  ];
+
+  // Function to calculate non-crit damage based on the provided formula
+  const calculateNonCritDamage = (MV) => {
+    if (formData.powerMultiplier < 2) {
+      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier) * 0.971);
+    } else {
+      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
+    }
+  };
+
+  // Function to calculate non-crit damage based on the provided formula
+  const calculatCritDamage = (MV) => {
+    if (formData.powerMultiplier < 2) {
+      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.critMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier) * 0.971);
+    } else {
+      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.critMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
+    }
+  };
+
+  // Function to calculate non-crit damage based on the provided formula
+  const calculateNonCritPartDamage = (MV) => {
+    if (formData.powerMultiplier < 2) {
+      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.partDamageMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier) * 0.971);
+    } else {
+      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier *  formData.partDamageMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
+    }
+  };
+
+  // Function to calculate non-crit damage based on the provided formula
+  const calculateCritPartDamage = (MV) => {
+    if (formData.powerMultiplier < 2) {
+      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.critMultiplier * formData.partDamageMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier) * 0.971);
+    } else {
+      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.critMultiplier * formData.partDamageMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
+    }
+  };
+
   return (
     <div className="damage-table-container">
       <h2>Damage Table</h2>
@@ -23,23 +66,16 @@ const DamageTable = ({ formData }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Shots (L)</td>
-            <td>90</td>
-            <td>{formData.nonCritShotsL}</td>
-            <td>{/* Calculate crit damage */}</td>
-            <td>{/* Calculate part damage non-crit */}</td>
-            <td>{/* Calculate part damage crit */}</td>
-          </tr>
-          <tr>
-            <td>Shots (L) Empowered</td>
-            <td>150</td>
-            <td>{formData.nonCritShotsLEmpowered}</td>
-            <td>{/* Calculate crit damage */}</td>
-            <td>{/* Calculate part damage non-crit */}</td>
-            <td>{/* Calculate part damage crit */}</td>
-          </tr>
-          {/* Add more rows as needed */}
+          {damageTypes.map((damageType, index) => (
+            <tr key={index}>
+              <td>{damageType.name}</td>
+              <td>{damageType.MV}</td>
+              <td>{calculateNonCritDamage(damageType.MV)}</td>
+              <td>{calculatCritDamage(damageType.MV)}</td>
+              <td>{calculateNonCritPartDamage(damageType.MV)}</td>
+              <td>{calculateCritPartDamage(damageType.MV)}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
