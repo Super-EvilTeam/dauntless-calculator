@@ -1,0 +1,31 @@
+.input-form-container {
+    max-width: 600px;
+    margin-left: 40px;
+  }
+  
+  .input-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-form label {
+    margin-bottom: 5px;
+  }
+  
+  .input-form input {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background-color: gray;
+    color: black;
+    align-self: end;
+  }
+  
+  .input-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
