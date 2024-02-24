@@ -54,15 +54,15 @@ const DamageTable = ({ formData }) => {
             <th></th>
             <th></th>
             <th colSpan="2">Core Damage</th>
-            <th colSpan="2">Part Damage</th>
+            <th className='yellow-text' colSpan="2">Part Damage</th>
           </tr>
           <tr>
             <th></th>
             <td>MV</td>
             <th>Non-crit</th>
             <th>Crit</th>
-            <th>Non-crit</th>
-            <th>Crit</th>
+            <th className='yellow-text'>Non-crit</th>
+            <th className='yellow-text'>Crit</th>
           </tr>
         </thead>
         <tbody>
@@ -72,8 +72,8 @@ const DamageTable = ({ formData }) => {
               <td>{damageType.MV}</td>
               <td>{calculateNonCritDamage(damageType.MV)}</td>
               <td>{calculatCritDamage(damageType.MV)}</td>
-              <td>{calculateNonCritPartDamage(damageType.MV)}</td>
-              <td>{calculateCritPartDamage(damageType.MV)}</td>
+              <td className='yellow-text'>{calculateNonCritPartDamage(damageType.MV)}</td>
+              <td className='yellow-text'>{calculateCritPartDamage(damageType.MV)}</td>
             </tr>
           ))}
         </tbody>
