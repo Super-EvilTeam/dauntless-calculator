@@ -19,20 +19,19 @@ function App() {
     weaponPower: 120,
     slayerPathNodes: 15,
     axeReforges: 5,
-    totalSlayerPower: NaN,
+    behemothLvl: 12,
+    totalSlayerPower:672.99,
+    totalBehemothPower: 325,
+    // powerDifference:100,
+    // powerMultiplier:1.994257143,
     elementalMatchup: 'Advantage',
   });
 
   // Function to handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    console.log(formData)
-    // Calculate total slayer power
-    const totalSlayerPower = calculateTotalSlayerPower(formData);
-    // Update the formData state with the calculated totalSlayerPower
-    setFormData({
-      ...formData,totalSlayerPower: totalSlayerPower,});
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault(); // Prevent default form submission behavior
+  //   console.log(formData)
+  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,35 +52,18 @@ function App() {
     // Update the form data state
     setFormData(prevFormData => ({...prevFormData,[name]: parsedValue}));
   };
-  
-  // Function to calculate total slayer power
-  const calculateTotalSlayerPower = (data) => {
-    let totalSlayerPower;
-    const baseDamage = 20 + (data.weaponLevel * 20) + data.weaponPower + data.slayerPathNodes - 96;
-    const axeMultiplier = 1 + data.axeReforges / 100;
-
-    if (data.elementalMatchup === 'Advantage') {
-      totalSlayerPower = baseDamage * axeMultiplier + 96 * 1.99;
-    } else if (data.elementalMatchup === 'Disadvantage') {
-      totalSlayerPower = baseDamage * axeMultiplier + 96 - (96 / 2);
-    } else {
-      totalSlayerPower = baseDamage * axeMultiplier + 96;
-    }
-
-    return totalSlayerPower.toFixed(2);
-  };
 
   return (
     <div className="App">
       <div className="left-container">
-        <InputForm formData={formData} handleSubmit={handleSubmit} handleChange={handleChange} />
+        <InputForm formData={formData}  handleChange={handleChange} />
       </div>
       <div className="right-container">
         <div className="right-top">
           <DamageTable formData={formData}/>
         </div>
         <div className="right-bottom">
-          <BehemothTable formData={formData} />
+          <BehemothTable formData={formData} handleChange={handleChange} />
         </div>
       </div>
     </div>

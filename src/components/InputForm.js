@@ -47,7 +47,7 @@ const InputForm = ({ formData, handleSubmit,handleChange}) => {
             <option value="Neutral">Neutral</option>
           </select>
         </div>
-        <button type="submit">Calculate</button>
+        {/* <button type="submit">Calculate</button> */}
       </form>
     </div>
   );

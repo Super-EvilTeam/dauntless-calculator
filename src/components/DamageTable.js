@@ -1,20 +1,20 @@
 import React from 'react';
 import './DamageTable.css'; // Import CSS file for styling if needed
 
-const DamageTable = ({ formData }) => {
+const DamageTable = ({ formData,setFormData }) => {
   // Function to calculate non-crit damage based on the provided formula
-  const calculateNonCritDamage = (C4,F18) => {
-    if (F18 < 2) {
-      return Math.ceil(((C4 + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * F18) * 0.971);
+  const calculateNonCritDamage = (MV,powerMultiplier) => {
+    if (powerMultiplier < 2) {
+      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * powerMultiplier) * 0.971);
     } else {
-      return Math.ceil((C4 +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * F18);
+      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * powerMultiplier);
     }
   };
 
   // Calculate non-crit damage for Shots (L) and Shots (L) Empowered
-  const nonCritShotsL = calculateNonCritDamage(90,1.994257143);
-  const nonCritShotsLEmpowered = calculateNonCritDamage(150,1.994257143);
-
+  formData.nonCritShotsL = calculateNonCritDamage(90,formData.powerMultiplier);
+  formData.nonCritShotsLEmpowered = calculateNonCritDamage(150,formData.powerMultiplier);
+ 
   return (
     <div className="damage-table-container">
       <h2>Damage Table</h2>
@@ -39,7 +39,7 @@ const DamageTable = ({ formData }) => {
           <tr>
             <td>Shots (L)</td>
             <td>90</td>
-            <td>{nonCritShotsL}</td>
+            <td>{formData.nonCritShotsL}</td>
             <td>{/* Calculate crit damage */}</td>
             <td>{/* Calculate part damage non-crit */}</td>
             <td>{/* Calculate part damage crit */}</td>
@@ -47,7 +47,7 @@ const DamageTable = ({ formData }) => {
           <tr>
             <td>Shots (L) Empowered</td>
             <td>150</td>
-            <td>{nonCritShotsLEmpowered}</td>
+            <td>{formData.nonCritShotsLEmpowered}</td>
             <td>{/* Calculate crit damage */}</td>
             <td>{/* Calculate part damage non-crit */}</td>
             <td>{/* Calculate part damage crit */}</td>
