@@ -78,7 +78,7 @@ function App() {
       </div>
       <div className="right-container">
         <div className="right-top">
-          <DamageTable />
+          <DamageTable formData={formData}/>
         </div>
         <div className="right-bottom">
           <BehemothTable formData={formData} />
