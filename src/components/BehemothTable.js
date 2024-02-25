@@ -27,7 +27,7 @@ const BehemothTable = ({ formData, handleChange }) => {
       totalSlayerPower = baseDamage * axeMultiplier + 96;
     }
 
-    return totalSlayerPower.toFixed(2);
+    return totalSlayerPower;
   };
 
   // Sample data
@@ -58,8 +58,8 @@ const BehemothTable = ({ formData, handleChange }) => {
             </td>
             <td>{formData.totalSlayerPower}</td>
             <td>{formData.totalBehemothPower}</td>
-            <td>{formData.powerDifference.toFixed(2)}</td>
-            <td>{formData.powerMultiplier.toFixed(9)}</td>
+            <td>{formData.powerDifference}</td>
+            <td>{formData.powerMultiplier}</td>
           </tr>
         </tbody>
       </table>

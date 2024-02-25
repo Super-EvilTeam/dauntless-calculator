@@ -35,7 +35,7 @@ function App() {
       let totalSlayerPower;
       const baseDamage = 20 + (weaponLevel * 20) + weaponPower + slayerPathNodes - 96;
       const axeMultiplier = 1 + axeReforges / 100;
-
+    
       if (elementalMatchup === 'Advantage') {
         totalSlayerPower = baseDamage * axeMultiplier + 96 * 2;
       } else if (elementalMatchup === 'Disadvantage') {
@@ -43,9 +43,10 @@ function App() {
       } else {
         totalSlayerPower = baseDamage * axeMultiplier + 96;
       }
-
-      return totalSlayerPower.toFixed(2);
+    
+      return totalSlayerPower; // Remove toFixed(2)
     };
+    
 
     const calculateDamageMultiplier = (powerDifference) => {
       if (powerDifference > 0) {
@@ -80,9 +81,11 @@ function App() {
 
   console.log(formData)
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
+    const { name, value, type } = e.target;
+    const parsedValue = type === 'number' ? parseFloat(value) : value; // Convert to float if type is 'number'
+    setFormData(prevFormData => ({ ...prevFormData, [name]: parsedValue }));
   };
+  
 
   return (
     <div className="App">
