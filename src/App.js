@@ -78,8 +78,7 @@ function App() {
     setPowerMultiplier(powerMultiplier);
 
   }, [formData]);
-
-  console.log(formData)
+  
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     const parsedValue = type === 'number' ? parseFloat(value) : value; // Convert to float if type is 'number'

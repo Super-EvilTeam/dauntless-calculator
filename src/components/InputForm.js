@@ -38,6 +38,7 @@ const InputForm = ({ formData,handleChange}) => {
         <div>
           <label>Elemental Matchup:</label>
           <select
+          className='elemental-matchup'
             name="elementalMatchup"
             value={formData.elementalMatchup}
             onChange={(e) => handleChange(e)} // Call handleChange on change

@@ -54,7 +54,7 @@ const BehemothTable = ({ formData, handleChange }) => {
           <tr>
             <td>
               {/* Input field for Behemoth level with onChange event */}
-              <input type="number" step="0.01" name='behemothLvl' value={formData.behemothLvl} onChange={(e) => handleChange(e)} />
+              <input className="behemoth-lvl" type="number" step="0.01" name='behemothLvl' value={formData.behemothLvl} onChange={(e) => handleChange(e)} />
             </td>
             <td>{formData.totalSlayerPower}</td>
             <td>{formData.totalBehemothPower}</td>

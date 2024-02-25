@@ -13,12 +13,24 @@
   }
   
   .input-form input {
-    margin-left: 10px;
-    margin-bottom: 10px;
-    background-color: gray;
-    color: black;
-    align-self: end;
+    /* padding: 12px; */
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    color: #333;
+    /* font-size: 11px; */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 9px;
+    width: 105px;
   }
+  
+  .input-form input:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add box shadow on focus */
+  }
+  
   
   .input-form button {
     margin-top: 20px;
@@ -28,5 +40,16 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+  }
+
+  .elemental-matchup {
+    width: 38%;
+    padding: 5px;
+    border: 1px solid #fff;
+    font-size: 15px;
+    background-color: #262323;
+    color: #fff;
+    text-align: center;
+    margin-left: 8px;
   }
   

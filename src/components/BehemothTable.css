@@ -17,3 +17,12 @@
     background-color:inherit;
   }
   
+  .behemoth-lvl {
+    width: 28%;
+    padding: 6px;
+    border: 1px solid #fff;
+    /* font-size: 14px; */
+    background-color: #f8f7f7;
+    color: #000;
+    text-align: center;
+  }
