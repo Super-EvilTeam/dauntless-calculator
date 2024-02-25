@@ -35,7 +35,7 @@ const BehemothTable = ({ formData, handleChange }) => {
   formData.totalSlayerPower = calculateTotalSlayerPower()
   formData.powerDifference = formData.totalSlayerPower - formData.totalBehemothPower;
   formData.powerMultiplier = calculateDamageMultiplier(formData.powerDifference);
-  
+
 
   return (
     <div className="behemoth-table-container">

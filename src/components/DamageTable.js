@@ -4,7 +4,7 @@ import movesetsData from './Movesets.json'; // Import the movesets JSON data
 
 const DamageTable = ({ formData }) => {
   const [selectedWeapon, setSelectedWeapon] = useState('Repeater'); // Default selected weapon
-
+  
   // Define movesets for different weapons
   const weaponMovesets = {
     Repeater: movesetsData.repeaters,
@@ -51,6 +51,7 @@ const DamageTable = ({ formData }) => {
       return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.critMultiplier * formData.partDamageMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
     }
   };
+  
 
   // Function to render the damage table based on the selected weapon
   const renderDamageTable = () => {
@@ -90,7 +91,8 @@ const DamageTable = ({ formData }) => {
       </table>
     );
   };
-
+  
+  
   return (
     <div className="damage-table-container">
       {/* Dropdown box for selecting the weapon */}
