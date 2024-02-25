@@ -24,39 +24,10 @@ function App() {
   });
   
   // Update non-crit damage values when the component mounts or when formData changes
-  useEffect(() => {
-  // Function to calculate non-crit damage based on the provided formula
-  const calculateNonCritDamage = (MV) => {
-    if (formData.powerMultiplier < 2) {
-      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier) * 0.971);
-    } else {
-      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
-    }
-  };
-  // Function to calculate total slayer power
-  const calculateTotalSlayerPower = () => {
-    let totalSlayerPower;
-    const baseDamage = 20 + (formData.weaponLevel * 20) + formData.weaponPower + formData.slayerPathNodes - 96;
-    const axeMultiplier = 1 + formData.axeReforges / 100;
-
-    if (formData.elementalMatchup === 'Advantage') {
-      totalSlayerPower = baseDamage * axeMultiplier + 96 * 2;
-    } else if (formData.elementalMatchup === 'Disadvantage') {
-      totalSlayerPower = baseDamage * axeMultiplier + 96 - (96 / 2);
-    } else {
-      totalSlayerPower = baseDamage * axeMultiplier + 96;
-    }
-
-    return totalSlayerPower.toFixed(2);
-  };
-  
-  // Calculate non-crit damage for Shots (L) and Shots (L) Empowered
-  const nonCritShotsL = calculateNonCritDamage(90);
-  const nonCritShotsLEmpowered = calculateNonCritDamage(150);
-  const totalSlayerPower = calculateTotalSlayerPower()
-  // Update formData with the calculated values
-  setFormData(prevFormData => ({...prevFormData,nonCritShotsL,nonCritShotsLEmpowered,totalSlayerPower}));
-  }, [formData]); // Trigger the effect whenever formData changes
+  // useEffect(() => {
+  // // Update formData with the calculated values
+  // setFormData(prevFormData => ({...prevFormData,totalSlayerPower}));
+  // }, [formData]); // Trigger the effect whenever formData changes
 
 
 

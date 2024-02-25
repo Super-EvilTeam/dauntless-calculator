@@ -13,8 +13,26 @@ const BehemothTable = ({ formData, handleChange }) => {
     }
   };
 
+  // Function to calculate total slayer power
+  const calculateTotalSlayerPower = () => {
+    let totalSlayerPower;
+    const baseDamage = 20 + (formData.weaponLevel * 20) + formData.weaponPower + formData.slayerPathNodes - 96;
+    const axeMultiplier = 1 + formData.axeReforges / 100;
+
+    if (formData.elementalMatchup === 'Advantage') {
+      totalSlayerPower = baseDamage * axeMultiplier + 96 * 2;
+    } else if (formData.elementalMatchup === 'Disadvantage') {
+      totalSlayerPower = baseDamage * axeMultiplier + 96 - (96 / 2);
+    } else {
+      totalSlayerPower = baseDamage * axeMultiplier + 96;
+    }
+
+    return totalSlayerPower.toFixed(2);
+  };
+
   // Sample data
   formData.totalBehemothPower = (formData.behemothLvl+1)*25;
+  formData.totalSlayerPower = calculateTotalSlayerPower()
   formData.powerDifference = formData.totalSlayerPower - formData.totalBehemothPower;
   formData.powerMultiplier = calculateDamageMultiplier(formData.powerDifference);
   
