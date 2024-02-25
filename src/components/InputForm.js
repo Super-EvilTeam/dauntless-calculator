@@ -1,7 +1,7 @@
 import React, {  } from 'react';
 import './InputForm.css'; // Import CSS file
 
-const InputForm = ({ formData, handleSubmit,handleChange}) => {
+const InputForm = ({ formData,handleChange}) => {
   // Array of input field configurations
   const inputFields = [
     { name: 'mvFlat', label: 'MV Flat' },
@@ -22,7 +22,7 @@ const InputForm = ({ formData, handleSubmit,handleChange}) => {
   return (
     <div className="input-form-container">
       <h2 className="input-form-heading">Inputs</h2>
-      <form className="input-form" onSubmit={handleSubmit}>
+      <form className="input-form">
         {inputFields.map(field => (
           <div key={field.name}>
             <label>{field.label}:</label>
