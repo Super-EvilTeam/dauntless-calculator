@@ -40,7 +40,7 @@ function App() {
     const axeMultiplier = 1 + formData.axeReforges / 100;
 
     if (formData.elementalMatchup === 'Advantage') {
-      totalSlayerPower = baseDamage * axeMultiplier + 96 * 1.99;
+      totalSlayerPower = baseDamage * axeMultiplier + 96 * 2;
     } else if (formData.elementalMatchup === 'Disadvantage') {
       totalSlayerPower = baseDamage * axeMultiplier + 96 - (96 / 2);
     } else {
