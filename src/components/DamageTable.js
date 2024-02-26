@@ -38,24 +38,21 @@ const DamageTable = ({ formData }) => {
   const calculateNonCritPartDamage = (MV) => {
     if (formData.powerMultiplier < 2) {
       // (((Base + BaseFlat) * partDMG Mult) + partFlat) * Att.Type Mult * Crit * rawDMG Mult * Power Mult * Acidic Penalty
-      return Math.ceil((((MV + formData.mvFlat) *formData.partDamageMultiplier) + formData.partDamageFlat)  + formData.precisionSight * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier * formData.acidicPenalty * 0.971);
+      return Math.ceil((((MV + formData.mvFlat) * formData.partDamageMultiplier) + formData.partDamageFlat) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier * formData.acidicPenalty * 0.971);
     } else {
-      return Math.ceil((((MV + formData.mvFlat) *formData.partDamageMultiplier) + formData.partDamageFlat)  + formData.precisionSight * formData.attackTypeMultiplier * formData.critMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier * formData.acidicPenalty * 0.971);
+      return Math.ceil((((MV + formData.mvFlat) * formData.partDamageMultiplier) + formData.partDamageFlat) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier * formData.acidicPenalty * 0.971);
     }
   };
 
   // Function to calculate non-crit damage based on the provided formula
   const calculateCritPartDamage = (MV) => {
     if (formData.powerMultiplier < 2) {
-      return Math.ceil(((MV + formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.critMultiplier * formData.partDamageMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier) * 0.971);
+      return Math.ceil((((MV + formData.mvFlat) *formData.partDamageMultiplier) + formData.partDamageFlat) * formData.attackTypeMultiplier * formData.critMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier * formData.acidicPenalty * 0.971);
     } else {
-      return Math.ceil((MV +formData.mvFlat + formData.precisionSight) * formData.attackTypeMultiplier * formData.critMultiplier * formData.partDamageMultiplier * formData.rawDamageMultiplier * formData.powerMultiplier);
+      return Math.ceil((((MV + formData.mvFlat) *formData.partDamageMultiplier) + formData.partDamageFlat) * formData.attackTypeMultiplier * formData.rawDamageMultiplier * formData.critMultiplier * formData.powerMultiplier * formData.acidicPenalty * 0.971);
     }
   };
   
-
-  // Function to render the damage table based on the selected weapon
-  // Function to render the damage table based on the selected weapon
 const renderDamageTable = () => {
   const movesets = weaponMovesets[selectedWeapon];
   return (

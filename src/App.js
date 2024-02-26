@@ -1,91 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import './App.css';
 import InputForm from './components/InputForm';
 import DamageTable from './components/DamageTable';
 import BehemothTable from './components/BehemothTable';
+import * as calc from './components/Formulas';
 
 function App() {
   // State object to store input values with default values
-  const [formData, setFormData] = useState({
-    mvFlat: 0,
-    precisionSight: 0,
-    attackTypeMultiplier: 1,
-    critMultiplier: 1.5,
-    rawDamageMultiplier: 1,
-    partDamageMultiplier: 1,
-    partDamageFlat: 0,
-    acidicPenalty: 1,
-    weaponLevel: 20,
-    weaponPower: 120,
-    slayerPathNodes: 15,
-    axeReforges: 5,
-    behemothLvl: 25.2,
-    elementalMatchup: "Advantage",
-  });
-
-  // Derived state values
-  const [totalBehemothPower, setTotalBehemothPower] = useState(0);
-  const [totalSlayerPower, setTotalSlayerPower] = useState(0);
-  const [powerDifference, setPowerDifference] = useState(0);
-  const [powerMultiplier, setPowerMultiplier] = useState(0);
-
-  useEffect(() => {
-    // Function to calculate total slayer power
-    const calculateTotalSlayerPower = (weaponLevel, weaponPower, slayerPathNodes, axeReforges, elementalMatchup) => {
-      let totalSlayerPower;
-      const baseDamage = 20 + (weaponLevel * 20) + weaponPower + slayerPathNodes - 96;
-      const axeMultiplier = 1 + axeReforges / 100;
-    
-      if (elementalMatchup === 'Advantage') {
-        totalSlayerPower = baseDamage * axeMultiplier + 96 * 2;
-      } else if (elementalMatchup === 'Disadvantage') {
-        totalSlayerPower = baseDamage * axeMultiplier + 96 - (96 / 2);
-      } else {
-        totalSlayerPower = baseDamage * axeMultiplier + 96;
-      }
-    
-      return totalSlayerPower; // Remove toFixed(2)
-    };
-    
-
-    const calculateDamageMultiplier = (powerDifference) => {
-      if (powerDifference > 0) {
-        return 1 + (powerDifference / 350);
-      } else {
-        return 0.99 + (powerDifference * (0.8 / 300));
-      }
-    };
-
-    const {
+  const [formData, setFormData] = useState(() => {
+    const behemothLvl = 25.2; // Default value for behemothLvl
+    const weaponLevel = 20; // Default value for weaponLevel
+    const weaponPower = 120; // Default value for weaponPower
+    const slayerPathNodes = 15; // Default value for slayerPathNodes
+    const axeReforges = 5; // Default value for axeReforges
+    const elementalMatchup = "Advantage"; // Default value for elementalMatchup
+  
+    const totalBehemothPower = calc.TotalBehemothPower(behemothLvl);
+    const totalSlayerPower = calc.TotalSlayerPower(weaponLevel, weaponPower, slayerPathNodes, axeReforges, elementalMatchup);
+    const powerDifference = calc.PowerDifference(totalSlayerPower, totalBehemothPower);
+    const powerMultiplier = calc.PowerMultiplier(powerDifference);
+  
+    return {
+      mvFlat: 0,
+      precisionSight: 0,
+      attackTypeMultiplier: 1,
+      critMultiplier: 1.5,
+      rawDamageMultiplier: 1,
+      partDamageMultiplier: 1,
+      partDamageFlat: 0,
+      acidicPenalty: 1,
       weaponLevel,
       weaponPower,
       slayerPathNodes,
       axeReforges,
-      elementalMatchup,
       behemothLvl,
-    } = formData;
+      elementalMatchup,
+      totalBehemothPower,
+      totalSlayerPower,
+      powerDifference,
+      powerMultiplier
+    };
+  });
 
-    const totalBehemothPower = (behemothLvl + 1) * 25;
-    setTotalBehemothPower(totalBehemothPower);
-
-    const totalSlayerPower = calculateTotalSlayerPower(weaponLevel, weaponPower, slayerPathNodes, axeReforges, elementalMatchup);
-    setTotalSlayerPower(totalSlayerPower);
-
-    const powerDifference = totalSlayerPower - totalBehemothPower;
-    setPowerDifference(powerDifference);
-
-    const powerMultiplier = calculateDamageMultiplier(powerDifference);
-    setPowerMultiplier(powerMultiplier);
-
-  }, [formData]);
-  
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value, type } = e.target;
-    const parsedValue = type === 'number' ? parseFloat(value) : value; // Convert to float if type is 'number'
-    setFormData(prevFormData => ({ ...prevFormData, [name]: parsedValue }));
-  };
+    const parsedValue = type === 'number' ? parseFloat(value) : value;
+    
+    setFormData(prevFormData => {
+      const updatedFormData = { ...prevFormData, [name]: parsedValue };
   
-
+      // Recalculate derived values based on updated form data
+      const { weaponLevel, weaponPower, slayerPathNodes, axeReforges, elementalMatchup, behemothLvl } = updatedFormData;
+      const totalBehemothPower = calc.TotalBehemothPower(behemothLvl);
+      const totalSlayerPower = calc.TotalSlayerPower(weaponLevel, weaponPower, slayerPathNodes, axeReforges, elementalMatchup);
+      const powerDifference = calc.PowerDifference(totalSlayerPower, totalBehemothPower);
+      const powerMultiplier = calc.PowerMultiplier(powerDifference);
+  
+      return {
+        ...updatedFormData,
+        totalBehemothPower,
+        totalSlayerPower,
+        powerDifference,
+        powerMultiplier
+      };
+    });
+  }, []);
+  
   return (
     <div className="App">
       <div className="left-container">
