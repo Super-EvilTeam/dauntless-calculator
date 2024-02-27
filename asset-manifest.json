@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dauntless-calculator/static/css/main.7f70ed74.css",
-    "main.js": "/dauntless-calculator/static/js/main.cc4b33b1.js",
+    "main.css": "/dauntless-calculator/static/css/main.60f10fab.css",
+    "main.js": "/dauntless-calculator/static/js/main.798c26f5.js",
     "static/js/453.f571ae85.chunk.js": "/dauntless-calculator/static/js/453.f571ae85.chunk.js",
     "index.html": "/dauntless-calculator/index.html",
-    "main.7f70ed74.css.map": "/dauntless-calculator/static/css/main.7f70ed74.css.map",
-    "main.cc4b33b1.js.map": "/dauntless-calculator/static/js/main.cc4b33b1.js.map",
+    "main.60f10fab.css.map": "/dauntless-calculator/static/css/main.60f10fab.css.map",
+    "main.798c26f5.js.map": "/dauntless-calculator/static/js/main.798c26f5.js.map",
     "453.f571ae85.chunk.js.map": "/dauntless-calculator/static/js/453.f571ae85.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7f70ed74.css",
-    "static/js/main.cc4b33b1.js"
+    "static/css/main.60f10fab.css",
+    "static/js/main.798c26f5.js"
   ]
 }
