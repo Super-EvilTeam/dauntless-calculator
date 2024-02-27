@@ -4,6 +4,7 @@ import InputForm from './components/InputForm';
 import DamageTable from './components/DamageTable';
 import BehemothTable from './components/BehemothTable';
 import * as calc from './components/Formulas';
+import CellSelector from './components/CellSelector';
 
 function App() {
   // State object to store input values with default values
@@ -65,11 +66,12 @@ function App() {
       };
     });
   }, []);
-  
+
   return (
     <div className="App">
       <div className="left-container">
         <InputForm formData={formData} handleChange={handleChange} />
+        <CellSelector setFormData={setFormData} />
       </div>
       <div className="right-container">
         <div className="right-top">

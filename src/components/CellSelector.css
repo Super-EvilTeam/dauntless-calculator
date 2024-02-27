@@ -1,0 +1,54 @@
+/* CellSelector.css */
+.cell-selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell-selector-container {
+  background-color: #0c0c0c;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.cell {
+  position: relative; /* Add relative positioning */
+  padding: 9px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  width: 138px;
+}
+
+.cell.selected {
+  background-color: #44a14e;
+}
+
+.minus {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.minus::before {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background-color: #fff;
+}

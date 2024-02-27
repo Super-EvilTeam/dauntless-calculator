@@ -1,0 +1,13 @@
+{
+    "Overpower": { "type": "rawDamageMultiplier",  "three": 20, "six": 40 },
+    "Predator": { "type": "rawDamageMultiplier", "three": 14, "six": 35 },
+    "Berserk": {  "type": "rawDamageMultiplier",  "three": 20, "six": 35 },
+    "Cunning": { "type": "critMultiplier",  "three": 0, "six": 30 },
+    "Impulse": {  "type": "critMultiplier",  "three": 40, "six": 100 },
+    "Galvanized": { "type": "critMultiplier",  "three": 0, "six": 15 },
+    "Pulse": {"type": "critMultiplier",  "three": 0, "six": 15 },
+    "Bladestorm": {"type": "partDamageFlat",  "three": 20, "six": 40 },
+    "Sharpened": { "type": "partDamageMultiplier", "three": 15, "six": 30 },
+    "Recycle": { "type": "rawDamageMultiplier",  "three": 30, "six": 60 }
+  }
+  
