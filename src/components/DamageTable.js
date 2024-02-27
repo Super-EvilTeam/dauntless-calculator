@@ -79,7 +79,7 @@ const renderDamageTable = () => {
             ))}
             </select>
           </th>
-          <td>MV</td>
+          <td className='mv-column'>MV</td>
           <th>Non-crit</th>
           <th>Crit</th>
           <th className='yellow-text'>Non-crit</th>
@@ -92,7 +92,7 @@ const renderDamageTable = () => {
           <React.Fragment key={index}>
             <tr>
               <td>{moveset.name}</td>
-              <td>{moveset.MV}</td>
+              <td className='mv-column'>{moveset.MV}</td>
               <td>{calculateNonCritDamage(moveset.MV)}</td>
               <td>{calculatCritDamage(moveset.MV)}</td>
               <td className='yellow-text'>{calculateNonCritPartDamage(moveset.MV)}</td>

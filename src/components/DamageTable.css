@@ -24,6 +24,11 @@ th {
   color: yellow;
 }
 
+.mv-column {
+	color: #26f5e1;
+}
+
+
 .select-wrapper {
 	width: 100%;
 	padding: 8px;

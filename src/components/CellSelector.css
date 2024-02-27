@@ -20,35 +20,23 @@
 }
 
 .cell {
-  position: relative; /* Add relative positioning */
-  padding: 9px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  width: 138px;
+	position: relative;
+	padding: 9px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	width: 158px;
+	background: inherit;
+	color: inherit;
+	text-align: left;
 }
 
 .cell.selected {
   background-color: #44a14e;
 }
 
-.minus {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.minus::before {
-  content: "";
-  width: 10px;
-  height: 2px;
-  background-color: #fff;
+.minus-button {
+  /* Styles for the minus button */
+  margin-left: 5px; /* Adjust as needed */
+  background-color: #dc3545;
+  color: #fff;
 }

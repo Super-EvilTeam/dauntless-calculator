@@ -19,9 +19,11 @@ const CellSelector = ({ setFormData }) => {
     const multiplierIncrement = (clicks === 1) ? three : (six - three);
 
     const updateMultiplier = (multiplierType) => {
+      const increment = multiplierType.includes("Flat") ? multiplierIncrement : multiplierIncrement / 100;
+    
       setFormData(prev => ({
         ...prev,
-        [multiplierType]: prev[multiplierType] + multiplierIncrement / 100
+        [multiplierType]: prev[multiplierType] + increment
       }));
     };
 
@@ -31,20 +33,7 @@ const CellSelector = ({ setFormData }) => {
       updatedCells[cellName].value = "+6";
     }
 
-    switch (type) {
-      case "rawDamageMultiplier":
-        updateMultiplier("rawDamageMultiplier");
-        break;
-      case "critMultiplier":
-        updateMultiplier("critMultiplier");
-        break;
-      case "partDamageMultiplier":
-        updateMultiplier("partDamageMultiplier");
-        break;
-      default:
-        break;
-    }
-
+    updateMultiplier(type)
     setCells(updatedCells);
   };
 
@@ -53,7 +42,7 @@ const CellSelector = ({ setFormData }) => {
       {Object.keys(cells).map((cellName, index) => (
         <button
           key={index}
-          className="cell"
+          className={`cell ${cells[cellName].clicks > 0 ? 'selected' : ''} ${cells[cellName].clicks >= 2 ? 'disabled' : ''}`}
           onClick={() => handleClick(cellName)}
           disabled={cells[cellName].clicks >= 2}
         >
