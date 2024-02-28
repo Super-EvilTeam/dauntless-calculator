@@ -1,54 +1,80 @@
 .input-form-container {
-    margin-left: 40px;
-  }
-  
-  .input-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input-form label {
-    margin-bottom: 5px;
-  }
-  
-  .input-form input {
-    /* padding: 12px; */
-    margin-bottom: 15px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background-color: #f8f8f8;
-    color: #333;
-    /* font-size: 11px; */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    margin-left: 9px;
-    width: 105px;
-  }
-  
-  .input-form input:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #007bff; /* Change border color on focus */
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add box shadow on focus */
-  }
-  
-  
-  .input-form button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  margin-left: 40px;
+}
 
-  .elemental-matchup {
-    width: 38%;
-    padding: 5px;
-    border: 1px solid #fff;
-    font-size: 15px;
-    background-color: #262323;
-    color: #fff;
-    text-align: center;
-    margin-left: 8px;
-  }
-  
+.input-form {
+  display: flex;
+  flex-direction: column; /* Align input fields below each other */
+}
+
+.input-form label {
+  margin-bottom: 5px;
+}
+
+.input-form input[type="number"] {
+	padding: 5px;
+	margin-bottom: 15px;
+	border: 2px solid #ddd;
+	border-radius: 6px;
+	background-color: #f8f8f8;
+	color: #333;
+	font-size: 14px;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+	margin-left: 9px;
+	width: 77px;
+	outline: none;
+}
+
+.input-form input[type="number"]:hover,
+.input-form input[type="number"]:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.input-form input[type="number"]::-webkit-inner-spin-button,
+.input-form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-form input[type="number"]::-webkit-input-placeholder {
+  color: #999;
+}
+
+.input-form input[type="number"]::-moz-placeholder {
+  color: #999;
+}
+
+.input-form input[type="number"]:-ms-input-placeholder {
+  color: #999;
+}
+
+.input-form input[type="number"]::placeholder {
+  color: #999;
+}
+
+.input-form input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #007bff; /* Change border color on focus */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); /* Add box shadow on focus */
+}
+
+.input-form button {
+	padding: 10px;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #484a4e;
+}
+
+.elemental-matchup {
+  width: 38%;
+  padding: 5px;
+  border: 1px solid #fff;
+  font-size: 15px;
+  background-color: #262323;
+  color: #fff;
+  text-align: center;
+  margin-left: 8px;
+}

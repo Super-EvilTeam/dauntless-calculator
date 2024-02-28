@@ -1,8 +1,8 @@
 .App {
 	display: grid;
-	grid-template-columns: 0.4fr 1fr;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: 1fr;
 	gap: 20px;
-	background-color: black;
 	color: white;
 }
 
@@ -11,7 +11,7 @@ body{
   padding: 0;
   font-family: Arial, sans-serif;
   overflow-x: hidden;
-  background-color: black;
+  background-color: #2c2a2a;
 }
 
 .container {
@@ -22,7 +22,7 @@ body{
 }
 
 
-.left-container {
+.input-form {
   grid-column: 1 / 2; /* Start at column 1, end at column 2 */
 }
 
@@ -39,3 +39,4 @@ body{
 .right-bottom {
   grid-row: 2 / 3; /* Start at row 2, end at row 3 */
 }
+

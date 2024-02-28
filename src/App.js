@@ -69,19 +69,15 @@ function App() {
 
   return (
     <div className="App">
-      <div className="left-container">
+      <div className="input-form">
         <InputForm formData={formData} handleChange={handleChange} />
         <CellSelector setFormData={setFormData} />
       </div>
-      <div className="right-container">
-        <div className="right-top">
-          <DamageTable formData={formData} setFormData={setFormData} />
-        </div>
-        <div className="right-bottom">
-          <BehemothTable formData={formData} handleChange={handleChange} />
-        </div>
+      <div className="damage-table">
+        <DamageTable formData={formData} setFormData={setFormData} />
+        <BehemothTable formData={formData} handleChange={handleChange} />
       </div>
-    </div>
+      </div>
   );
 }
 

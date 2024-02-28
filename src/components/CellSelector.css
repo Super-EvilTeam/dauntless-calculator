@@ -1,5 +1,4 @@
 .cell-selector-container {
-  background-color: #0c0c0c;
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -24,7 +23,7 @@
 }
 
 .cell.selected {
-  background-color: #44a14e;
+	background-color: #499451fa;
 }
 
 .minus-button {
