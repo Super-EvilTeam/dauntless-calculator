@@ -1,16 +1,3 @@
-/* CellSelector.css */
-.cell-selector-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .cell-selector-container {
   background-color: #0c0c0c;
   padding: 20px;
@@ -28,6 +15,12 @@
 	background: inherit;
 	color: inherit;
 	text-align: left;
+  transition: filter 300ms;
+}
+
+.cell:hover {
+	filter: brightness(1.2);
+	background-color: #4f4a4a;
 }
 
 .cell.selected {

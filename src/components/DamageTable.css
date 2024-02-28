@@ -1,6 +1,4 @@
 .damage-table-container {
-	max-width: calc(100vw - 40px);
-	overflow: auto;
 	margin-right: 19px;
 }
 
