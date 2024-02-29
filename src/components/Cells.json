@@ -8,6 +8,12 @@
   "Pulse": {"type": "critMultiplier",  "three": 0, "six": 15 },
   "Bladestorm": {"type": "partDamageFlat",  "three": 15, "six": 40 },
   "Sharpened": {"type": "partDamageMultiplier", "three": 15, "six": 30 },
-  "Recycle": {"type": "rawDamageMultiplier",  "three": 30, "six": 60 }
+  "Recycle": {"type": "rawDamageMultiplier",  "three": 30, "six": 60 },
+  "Adrenaline": {"type": "rawDamageMultiplier",  "three": 15, "six": 30 },
+  "Aetherhunter": {"type": "rawDamageMultiplier",  "three": 20, "six": 50 },
+  "Rage": {"type": "rawDamageMultiplier",  "three": 20, "six": 20 },
+  "Ragehunter": {"type": "rawDamageMultiplier",  "three": 15, "six": 40 },
+  "Reduce": {"type": "rawDamageMultiplier",  "three": 20, "six": 50 },
+  "Savagery": {"type": "rawDamageMultiplier",  "three": 40, "six": 100 }
 }
   
